@@ -1,12 +1,12 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import Navbar from "../Navbar/Navbar"
-import Footer from "../Footer/Footer"
+import Navbar from "../Navbar/Navbar";
+import Footer from "../Footer/Footer";
 
-const Layout = () => {
+const Layout = ({ userData }) => {
   return (
     <>
-      <Navbar />
+      <Navbar userData={userData} />
       <div className="container">
         <Outlet />
       </div>
