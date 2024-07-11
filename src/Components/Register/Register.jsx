@@ -1,8 +1,10 @@
-import axios from "axios";
+import Joi, { func } from "joi";
 import React, { useState } from "react";
-import { json, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+  //! Start States Zone
+
   const [getData, setGetData] = useState({
     username: "",
     email: "",
@@ -11,6 +13,10 @@ const Register = () => {
   });
   const [error, setError] = useState("");
   const [isLoding, setIsLoding] = useState(false);
+  let navigate = useNavigate();
+  const [errorList, setErrorList] = useState([]);
+
+  //! End States Zone
 
   const handleChange = (event) => {
     setGetData((old) => ({
@@ -34,41 +40,77 @@ const Register = () => {
         }
       );
 
-      console.log("RESPONSEEEEE", response);
+      // console.log("RESPONSEEEEE", response);
 
       if (!response.ok) {
         let errorMsg = await response.text();
 
-        console.log("ErrorMSGGGG", errorMsg);
-        setError(errorMsg.slice(10));
+        // console.log("ErrorMSGGGG", errorMsg);
+        setError(errorMsg);
         throw new Error(
           `HTTP error! Status: ${response.status}, Message: ${errorMsg}`
         );
       }
 
       setIsLoding(false);
+      navigate("/login");
     } catch (error) {
       console.error("you have an error", error);
       setIsLoding(false);
     }
   }
 
-  console.log("ERORRRRRR", error);
+  // console.log("ERORRRRRR", error);
   //! ===================== End Send data ======================================
+
+  function validateRegisterForm() {
+    let scheme = Joi.object({
+      username: Joi.string()
+        .pattern(/^[A-Z]/)
+        .min(3)
+        .max(15)
+        .required(),
+      email: Joi.string()
+        .email({ tlds: { allow: ["com", "net"] } })
+        .required(),
+      password: Joi.string()
+        .pattern(/^[A-Z][a-z]{3,6}/)
+        .required(),
+      country: Joi.string().required(),
+    });
+
+    // console.log(scheme.validate(getData, { abortEarly: false }));
+    return scheme.validate(getData, { abortEarly: false });
+  }
 
   const handleSubmit = (e) => {
     setIsLoding(true);
     e.preventDefault();
-    sendRegDataToApi();
+    let validateForm = validateRegisterForm();
+
+    if (validateForm.error) {
+      // console.log(validateForm.error);
+      setErrorList(validateForm.error.details);
+      setIsLoding(false);
+    } else {
+      sendRegDataToApi();
+    }
   };
+
+  // console.log("ERRORlisttttttttt", errorList);
 
   return (
     <>
-      {error.length > 0 ? (
-        <div className="alert alert-danger my-2">{error}</div>
-      ) : (
-        ""
-      )}
+      {/* {errorList.map((err, index) => {
+        if (err.context.label === "password") {
+          return (
+            <div className="alert alert-danger my-2">Password not valid</div>
+          );
+        } else {
+          return <div className="alert alert-danger my-2">{err.message}</div>;
+        }
+      })} */}
+
       <form action="" className="w-50 mx-auto" onSubmit={handleSubmit}>
         <label htmlFor="username">userName: </label>
         <input
@@ -78,6 +120,19 @@ const Register = () => {
           className="form-control my-input m-2 text-white"
           onChange={handleChange}
         />
+        {/* Start appears the validation error for each input */}
+        {errorList.filter((err) => err.context.label === "username")[0] ? (
+          <div className="mx-3 text-danger">
+            {
+              errorList.filter((err) => err.context.label === "username")[0]
+                ?.message
+            }
+          </div>
+        ) : (
+          ""
+        )}
+        {/* End appears the validation error for each input */}
+
         <label htmlFor="email">Email: </label>
         <input
           type="email"
@@ -86,6 +141,18 @@ const Register = () => {
           className="form-control my-input m-2 text-white"
           onChange={handleChange}
         />
+        {/* Start appears the validation error for each input */}
+        {errorList.filter((err) => err.context.label === "email")[0] ? (
+          <div className="mx-3 text-danger">
+            {
+              errorList.filter((err) => err.context.label === "email")[0]
+                ?.message
+            }
+          </div>
+        ) : (
+          ""
+        )}
+        {/* End appears the validation error for each input */}
         <label htmlFor="password">Password: </label>
         <input
           type="password"
@@ -94,6 +161,18 @@ const Register = () => {
           className="form-control my-input m-2 text-white"
           onChange={handleChange}
         />
+        {/* Start appears the validation error for each input */}
+        {errorList.filter((err) => err.context.label === "password")[0] ? (
+          <div className="mx-3 text-danger">
+            {
+              errorList.filter((err) => err.context.label === "password")[0]
+                ?.message
+            }
+          </div>
+        ) : (
+          ""
+        )}
+        {/* End appears the validation error for each input */}
         <label htmlFor="country">Country: </label>
         <input
           type="text"
@@ -102,9 +181,21 @@ const Register = () => {
           className="form-control my-input m-2 text-white"
           onChange={handleChange}
         />
+        {/* Start appears the validation error for each input */}
+        {errorList.filter((err) => err.context.label === "country")[0] ? (
+          <div className="mx-3 text-danger">
+            {
+              errorList.filter((err) => err.context.label === "country")[0]
+                ?.message
+            }
+          </div>
+        ) : (
+          ""
+        )}
+        {/* End appears the validation error for each input */}
 
-        <button type="submit" className="btn btn-danger">
-          {isLoding == true ? (
+        <button type="submit" className="btn btn-light my-4">
+          {isLoding === true ? (
             <i className="fas fa-spinner fa-spin"></i>
           ) : (
             "Register"
@@ -116,30 +207,3 @@ const Register = () => {
 };
 
 export default Register;
-
-// async function sendRegDataToApi() {
-//   let { data } = await axios.post(
-//     "https://gp-workwave-production.up.railway.app/api/auth/register",
-//     getData
-//   );
-//   console.log("DATAAAAA", data);
-//   if (data.staus === "SUCESS") {
-//     console.log("successssssssssssssssssss");
-//   } else {
-//     console.log("Faillllllllllllllll");
-//     setError(data.message);
-//   }
-
-// }  // async function sendRegDataToApi() {
-//   let { data } = await axios.post(
-//     "https://gp-workwave-production.up.railway.app/api/auth/register",
-//     getData
-//   );
-//   console.log("DATAAAAA", data);
-//   if (data.staus === "SUCESS") {
-//     console.log("successssssssssssssssssss");
-//   } else {
-//     console.log("Faillllllllllllllll");
-//     setError(data.message);
-//   }
-// }
