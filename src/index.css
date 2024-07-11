@@ -28,3 +28,7 @@ a {
   caret-color: #e11d48;
   color: white;
 }
+
+.cursor-pointer {
+  cursor: pointer;
+}
