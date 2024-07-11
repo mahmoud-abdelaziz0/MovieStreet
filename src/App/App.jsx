@@ -13,9 +13,15 @@ import People from "../Components/People/People";
 import Tv from "../Components/Tv/Tv";
 import Profile from "../Components/Profile/Profile";
 import { jwtDecode } from "jwt-decode";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
+  useEffect(() => {
+    if (localStorage.getItem("userToken") !== null) {
+      saveUserData();
+    }
+  }, []);
+
   const [userData, setUserData] = useState(null);
 
   function saveUserData() {
@@ -28,7 +34,7 @@ function App() {
   let routers = createBrowserRouter([
     {
       path: "/",
-      element: <Layout userData={userData} />,
+      element: <Layout userData={userData} setUserData={setUserData} />,
       children: [
         // {index: true, element: <Home/>},
         { path: "home", element: <Home /> },

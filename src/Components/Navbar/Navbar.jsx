@@ -7,7 +7,7 @@ import { FaSpotify } from "react-icons/fa";
 
 import { Link } from "react-router-dom";
 
-const Navbar = ({ userData }) => {
+const Navbar = ({ userData, logout }) => {
   return (
     <>
       <nav className="container-fluid p-3 d-flex flex-md-row flex-column align-items-center justify-content-between">
@@ -54,8 +54,8 @@ const Navbar = ({ userData }) => {
           <ul className="list-unstyled d-flex flex-md-row flex-column m-0 align-items-center">
             {userData ? (
               <>
-                <li className="px-2">
-                  <span>Logout</span>
+                <li className="px-2 cursor-pointer " onClick={logout}>
+                  <span>LogOut</span>
                 </li>
                 <li className="px-2">
                   <Link to={"profile"}>Profile</Link>
