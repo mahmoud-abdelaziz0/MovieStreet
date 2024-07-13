@@ -1,7 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 :root {
-  --bg-color: #131722;
+  --bg-color: #212529;
+  --main-color: #c80036;
   --main-font: "Montserrat Alternates", sans-serif;
   --light-bg: #24baef;
   --font-color: #fff;
@@ -11,6 +12,7 @@ body {
   background-color: var(--bg-color);
   font-family: var(--main-font);
   color: var(--font-color);
+  height: 100vh;
 }
 
 a {
@@ -25,10 +27,160 @@ a {
 .my-input:focus {
   background-color: transparent;
   outline: none;
-  caret-color: #e11d48;
+  caret-color: var(--main-color);
   color: white;
 }
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.hovre:hover {
+  color: var(--main-color);
+  transition: 0.2s;
+}
+
+.loginImage {
+  width: 300px;
+}
+
+.out-form {
+  background-color: #2e3136;
+  padding: 10px;
+  border-radius: 12px;
+  width: 40%;
+  margin-top: 25px;
+}
+
+.form-design {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.shadow {
+  border-bottom: 1px solid #c8003690;
+}
+
+.textSize {
+  font-size: 12px;
+}
+
+/* Add this to your index.css */
+
+/* Bootstrap does not have direct equivalents for some Tailwind utilities, so custom CSS is needed */
+
+h1 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+p {
+  margin-top: 0.375rem; /* Equivalent to mt-1.5 */
+  font-size: 0.875rem; /* Equivalent to text-sm */
+}
+
+.clip-hidden {
+  /* clip-path: ellipse(0 0 at 0% 0%); */
+  opacity: 0;
+}
+
+.clip-visible {
+  /* clip-path: ellipse(750px 750px at 0% 0%); */
+}
+
+#back,
+#forward {
+  position: absolute; /* Equivalent to absolute */
+  z-index: 5; /* Equivalent to z-[5] */
+  transform: translateY(-50%); /* Equivalent to -translate-y-2/4 */
+  color: #f8f9fa; /* Equivalent to text-gray-100 */
+  transition: transform 0.4s ease-out; /* Equivalent to duration-[0.4s] ease-out */
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0.625rem; /* Equivalent to py-2.5 */
+  padding-bottom: 0.625rem; /* Equivalent to py-2.5 */
+  border: 0;
+  top: 50%; /* Equivalent to top-2/4 */
+}
+
+#back:hover,
+#forward:hover {
+  transform: translateY(-50%) scale(1.25); /* Equivalent to hover:scale-125 */
+  cursor: pointer; /* Equivalent to cursor-pointer */
+}
+
+.content {
+  color: aliceblue; /* Equivalent to text-[aliceblue] */
+  position: absolute; /* Equivalent to absolute */
+  height: 20%; /* Equivalent to w-full */
+  width: 100%;
+  z-index: 5; /* Equivalent to z-[5] */
+  text-align: center; /* Equivalent to text-center */
+  /* backdrop-filter: blur(2px); */
+  transition: all 1s; /* Equivalent to duration-[1s] */
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 15px; /* Equivalent to py-[15px] */
+  padding-bottom: 15px; /* Equivalent to py-[15px] */
+  left: 0;
+  top: 0;
+  background: #00000070;
+}
+
+.overlay::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #00000030;
+  width: 100%;
+  height: 100%;
+}
+
+.line,
+.breaker {
+  /* border: 1px solid white; */
+  height: 1px;
+  background-color: var(--main-color);
+  position: relative;
+  top: 10px;
+}
+.breaker {
+  width: 100%;
+}
+
+.brdr {
+  background-color: #a8a8a83d;
+  height: 1px;
+}
+
+.vote {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--main-color);
+  font-weight: bold;
+  color: white;
+  top: 10px;
+  right: 10px;
+}
+
+.movie {
+  background-color: #2e3136;
+  /* padding: 10px; */
+  border-radius: 12px;
+}
+
+.movie-title {
+  height: 30%;
+  background-color: #00000095;
+  font-size: 15px;
+  font-weight: bold;
+  width: 100%;
+  border-radius: 12px;
+}
+
+.active {
+  background-color: #24baef;
 }
