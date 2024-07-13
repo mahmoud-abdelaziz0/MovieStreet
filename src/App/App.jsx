@@ -14,6 +14,8 @@ import Tv from "../Components/Tv/Tv";
 import Profile from "../Components/Profile/Profile";
 import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
+import ProtectedRoute from "../Components/ProtectedRoute/ProtectedRoute";
+import MediaContextProvider from "../Context/MediaContextProvider";
 
 function App() {
   useEffect(() => {
@@ -37,13 +39,57 @@ function App() {
       element: <Layout userData={userData} setUserData={setUserData} />,
       children: [
         // {index: true, element: <Home/>},
-        { path: "home", element: <Home /> },
-        { path: "about", element: <About /> },
-        { path: "movies", element: <Movies /> },
-        { path: "people", element: <People /> },
-        { path: "tv", element: <Tv /> },
+        {
+          path: "home",
+          element: (
+            <ProtectedRoute userData={userData}>
+              <Home />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: "about",
+          element: (
+            <ProtectedRoute userData={userData}>
+              <About />{" "}
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: "movies",
+          element: (
+            <ProtectedRoute userData={userData}>
+              <Movies />{" "}
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: "people",
+          element: (
+            <ProtectedRoute userData={userData}>
+              <People />{" "}
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: "tv",
+          element: (
+            <ProtectedRoute userData={userData}>
+              {" "}
+              <Tv />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: "profile",
+          element: (
+            <ProtectedRoute userData={userData}>
+              {" "}
+              <Profile userData={userData} />
+            </ProtectedRoute>
+          ),
+        },
         { path: "login", element: <Login saveUserData={saveUserData} /> },
-        { path: "profile", element: <Profile userData={userData} /> },
         { index: true, element: <Register /> },
       ],
     },
@@ -51,7 +97,9 @@ function App() {
 
   return (
     <>
-      <RouterProvider router={routers}></RouterProvider>
+      <MediaContextProvider>
+        <RouterProvider router={routers}></RouterProvider>
+      </MediaContextProvider>
     </>
   );
 }
