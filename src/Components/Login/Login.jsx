@@ -101,56 +101,70 @@ const Login = ({ saveUserData }) => {
 
   return (
     <>
-      <form action="" className="w-50 mx-auto" onSubmit={handleSubmit}>
-        <label htmlFor="email">Email: </label>
-        <input
-          type="email"
-          name="email"
-          id="email"
-          className="form-control my-input m-2 text-white"
-          onChange={handleChange}
-        />
-        {/* Start appears the validation error for each input */}
-        {errorList.filter((err) => err.context.label === "email")[0] ? (
-          <div className="mx-3 text-danger">
-            {
-              errorList.filter((err) => err.context.label === "email")[0]
-                ?.message
-            }
-          </div>
-        ) : (
-          ""
-        )}
-        {/* End appears the validation error for each input */}
-        <label htmlFor="password">Password: </label>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          className="form-control my-input m-2 text-white"
-          onChange={handleChange}
-        />
-        {/* Start appears the validation error for each input */}
-        {errorList.filter((err) => err.context.label === "password")[0] ? (
-          <div className="mx-3 text-danger">
-            {
-              errorList.filter((err) => err.context.label === "password")[0]
-                ?.message
-            }
-          </div>
-        ) : (
-          ""
-        )}
-        {/* End appears the validation error for each input */}
+      <div className="parent d-flex justify-content-around mt-5">
+        <div className="left-side out-form">
+          <form
+            action=""
+            className="form-design w-75 mx-auto mt-3"
+            onSubmit={handleSubmit}
+          >
+            <label htmlFor="email">Email: </label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              className="form-control my-input m-2 text-white "
+              onChange={handleChange}
+            />
+            {/* Start appears the validation error for each input */}
+            {errorList.filter((err) => err.context.label === "email")[0] ? (
+              <div className="mx-3 text-danger textSize">
+                {
+                  errorList.filter((err) => err.context.label === "email")[0]
+                    ?.message
+                }
+              </div>
+            ) : (
+              ""
+            )}
+            {/* End appears the validation error for each input */}
+            <label htmlFor="password">Password: </label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              className="form-control my-input m-2 text-white"
+              onChange={handleChange}
+            />
+            {/* Start appears the validation error for each input */}
+            {errorList.filter((err) => err.context.label === "password")[0] ? (
+              <div className="mx-3 text-danger textSize">
+                {
+                  errorList.filter((err) => err.context.label === "password")[0]
+                    ?.message
+                }
+              </div>
+            ) : (
+              ""
+            )}
+            {/* End appears the validation error for each input */}
 
-        <button type="submit" className="btn btn-light my-4">
-          {isLoding === true ? (
-            <i className="fas fa-spinner fa-spin"></i>
-          ) : (
-            "Login"
-          )}
-        </button>
-      </form>
+            <button type="submit" className="btn btn-light my-4">
+              {isLoding === true ? (
+                <i className="fas fa-spinner fa-spin"></i>
+              ) : (
+                "Login"
+              )}
+            </button>
+          </form>
+        </div>
+        {/* ========================================= */}
+        <div className="right-side w-50 d-flex justify-content-center mt-5">
+          <div className="loginImage">
+            <img src="assets/Loginimage1.png" alt="" className="w-100" />
+          </div>
+        </div>
+      </div>
     </>
   );
 };
