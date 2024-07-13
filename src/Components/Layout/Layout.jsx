@@ -15,7 +15,7 @@ const Layout = ({ userData, setUserData }) => {
   return (
     <>
       <Navbar userData={userData} logout={logout} />
-      <div className="container">
+      <div className=" container" style={{ minHeight: "100vh" }}>
         <Outlet />
       </div>
       <Footer />
