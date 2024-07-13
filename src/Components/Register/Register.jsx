@@ -110,98 +110,116 @@ const Register = () => {
           return <div className="alert alert-danger my-2">{err.message}</div>;
         }
       })} */}
+      <div className="parent d-flex justify-content-around">
+        <div className="left-side out-form">
+          <form
+            action=""
+            className="form-design w-75 mx-auto"
+            onSubmit={handleSubmit}
+          >
+            <label htmlFor="username" className="mt-4">
+              userName:{" "}
+            </label>
+            <input
+              type="text"
+              name="username"
+              id="username"
+              className="form-control my-input  text-white"
+              onChange={handleChange}
+            />
+            {/* Start appears the validation error for each input */}
+            {errorList.filter((err) => err.context.label === "username")[0] ? (
+              <div className="mx-3 text-danger textSize">
+                {
+                  errorList.filter((err) => err.context.label === "username")[0]
+                    ?.message
+                }
+              </div>
+            ) : (
+              ""
+            )}
+            {/* End appears the validation error for each input */}
 
-      <form action="" className="w-50 mx-auto" onSubmit={handleSubmit}>
-        <label htmlFor="username">userName: </label>
-        <input
-          type="text"
-          name="username"
-          id="username"
-          className="form-control my-input m-2 text-white"
-          onChange={handleChange}
-        />
-        {/* Start appears the validation error for each input */}
-        {errorList.filter((err) => err.context.label === "username")[0] ? (
-          <div className="mx-3 text-danger">
-            {
-              errorList.filter((err) => err.context.label === "username")[0]
-                ?.message
-            }
-          </div>
-        ) : (
-          ""
-        )}
-        {/* End appears the validation error for each input */}
+            <label htmlFor="email">Email: </label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              className="form-control my-input m-2 text-white"
+              onChange={handleChange}
+            />
+            {/* Start appears the validation error for each input */}
+            {errorList.filter((err) => err.context.label === "email")[0] ? (
+              <div className="mx-3 text-danger textSize">
+                {
+                  errorList.filter((err) => err.context.label === "email")[0]
+                    ?.message
+                }
+              </div>
+            ) : (
+              ""
+            )}
+            {/* End appears the validation error for each input */}
+            <label htmlFor="password">Password: </label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              className="form-control my-input m-2 text-white "
+              onChange={handleChange}
+            />
+            {/* Start appears the validation error for each input */}
+            {errorList.filter((err) => err.context.label === "password")[0] ? (
+              <div className="mx-3 text-danger textSize">
+                {
+                  errorList.filter((err) => err.context.label === "password")[0]
+                    ?.message
+                }
+              </div>
+            ) : (
+              ""
+            )}
+            {/* End appears the validation error for each input */}
+            <label htmlFor="country">Country: </label>
+            <input
+              type="text"
+              name="country"
+              id="country"
+              className="form-control my-input m-2 text-white"
+              onChange={handleChange}
+            />
+            {/* Start appears the validation error for each input */}
+            {errorList.filter((err) => err.context.label === "country")[0] ? (
+              <div className="mx-3 text-danger textSize">
+                {
+                  errorList.filter((err) => err.context.label === "country")[0]
+                    ?.message
+                }
+              </div>
+            ) : (
+              ""
+            )}
+            {/* End appears the validation error for each input */}
 
-        <label htmlFor="email">Email: </label>
-        <input
-          type="email"
-          name="email"
-          id="email"
-          className="form-control my-input m-2 text-white"
-          onChange={handleChange}
-        />
-        {/* Start appears the validation error for each input */}
-        {errorList.filter((err) => err.context.label === "email")[0] ? (
-          <div className="mx-3 text-danger">
-            {
-              errorList.filter((err) => err.context.label === "email")[0]
-                ?.message
-            }
+            <button type="submit" className="btn btn-light my-4 w-25">
+              {isLoding === true ? (
+                <i className="fas fa-spinner fa-spin"></i>
+              ) : (
+                "Register"
+              )}
+            </button>
+          </form>
+        </div>
+        {/* ===================================== */}
+        <div
+          className="right-side w-50 d-flex justify-content-center"
+          style={{ marginTop: "110px" }}
+        >
+          <div className="loginImage ">
+            <img src="assets/SignUp.png" alt="" className="w-100" />
           </div>
-        ) : (
-          ""
-        )}
-        {/* End appears the validation error for each input */}
-        <label htmlFor="password">Password: </label>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          className="form-control my-input m-2 text-white"
-          onChange={handleChange}
-        />
-        {/* Start appears the validation error for each input */}
-        {errorList.filter((err) => err.context.label === "password")[0] ? (
-          <div className="mx-3 text-danger">
-            {
-              errorList.filter((err) => err.context.label === "password")[0]
-                ?.message
-            }
-          </div>
-        ) : (
-          ""
-        )}
-        {/* End appears the validation error for each input */}
-        <label htmlFor="country">Country: </label>
-        <input
-          type="text"
-          name="country"
-          id="country"
-          className="form-control my-input m-2 text-white"
-          onChange={handleChange}
-        />
-        {/* Start appears the validation error for each input */}
-        {errorList.filter((err) => err.context.label === "country")[0] ? (
-          <div className="mx-3 text-danger">
-            {
-              errorList.filter((err) => err.context.label === "country")[0]
-                ?.message
-            }
-          </div>
-        ) : (
-          ""
-        )}
-        {/* End appears the validation error for each input */}
-
-        <button type="submit" className="btn btn-light my-4">
-          {isLoding === true ? (
-            <i className="fas fa-spinner fa-spin"></i>
-          ) : (
-            "Register"
-          )}
-        </button>
-      </form>
+        </div>
+      </div>
     </>
   );
 };
