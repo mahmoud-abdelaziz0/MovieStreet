@@ -15,12 +15,14 @@ const Navbar = ({ userData, logout }) => {
         className=" shadow container-fluid d-flex flex-md-row flex-column align-items-center justify-content-between"
       >
         <div className="left-nav d-flex flex-md-row flex-column align-items-center ">
-          <img
-            src="assets/moviesLogo2.png"
-            alt="logo"
-            className="m-0 pe-2"
-            style={{ width: "110px" }}
-          />
+          <Link to={"/"}>
+            <img
+              src="assets/moviesLogo2.png"
+              alt="logo"
+              className="m-0 pe-2"
+              style={{ width: "110px" }}
+            />
+          </Link>
 
           {userData ? (
             <ul className="list-unstyled d-flex flex-md-row flex-column my-0 ms-5 align-items-center">
@@ -79,7 +81,7 @@ const Navbar = ({ userData, logout }) => {
             ) : (
               <>
                 <li className="px-2">
-                  <Link className="hovre" to={"/"}>
+                  <Link className="hovre" to={"register"}>
                     Register
                   </Link>
                 </li>

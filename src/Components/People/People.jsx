@@ -7,7 +7,7 @@ const People = () => {
   return (
     <>
       <div className="row">
-        <div className="image mx-auto" style={{ width: "30%" }}>
+        <div className="image-people mx-auto" style={{ width: "30%" }}>
           <img className="w-100" src="assets/actor.png" alt="" />
         </div>
       </div>

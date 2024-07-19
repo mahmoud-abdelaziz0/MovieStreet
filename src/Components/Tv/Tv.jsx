@@ -8,7 +8,7 @@ const Tv = () => {
   return (
     <>
       <div className="row">
-        <div className="image mx-auto" style={{ width: "30%" }}>
+        <div className="image-tv mx-auto" style={{ width: "30%" }}>
           <img className="w-100" src="assets/tv1.png" alt="" />
         </div>
       </div>

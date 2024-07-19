@@ -84,11 +84,6 @@ p {
   /* clip-path: ellipse(0 0 at 0% 0%); */
   opacity: 0;
 }
-
-.clip-visible {
-  /* clip-path: ellipse(750px 750px at 0% 0%); */
-}
-
 #back,
 #forward {
   position: absolute; /* Equivalent to absolute */
@@ -155,15 +150,27 @@ p {
   height: 1px;
 }
 
+.vote,
+.vote-details {
+  border-radius: 50%;
+  background-color: var(--main-color);
+  color: white;
+}
+
 .vote {
   width: 40px;
   height: 40px;
-  border-radius: 50%;
-  background-color: var(--main-color);
   font-weight: bold;
-  color: white;
   top: 10px;
   right: 10px;
+}
+
+.vote-details {
+  width: 30px;
+  height: 30px;
+  font-size: 12px;
+  top: 10px;
+  right: 20px;
 }
 
 .movie {
@@ -172,15 +179,109 @@ p {
   border-radius: 12px;
 }
 
-.movie-title {
+.movie-title,
+.movie-title-details {
   height: 30%;
-  background-color: #00000095;
-  font-size: 15px;
   font-weight: bold;
   width: 100%;
   border-radius: 12px;
 }
 
+.movie-title {
+  background-color: #00000095;
+  font-size: 15px;
+}
+
 .active {
   background-color: #24baef;
+}
+
+.handle-hover:hover {
+  transform: translateY(-4px);
+  transition: 0.5s;
+}
+
+.offline {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  background-color: var(--main-color);
+  z-index: 10;
+  padding: 15px;
+  border-radius: 12px;
+  font-weight: bold;
+}
+
+.genre {
+  background-color: var(--main-color);
+  color: white;
+  padding: 10px 20px;
+  margin: 20px 10px;
+  font-size: 12px;
+  width: fit-content;
+  border-radius: 5px;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .media {
+    width: 50%;
+    margin: 5px auto 20px;
+  }
+  .details {
+    text-align: center;
+  }
+  .genre {
+    padding: 5px 10px;
+    margin: 10px 5px;
+    font-size: 10px;
+  }
+  .similar-details {
+    font-size: 10px;
+  }
+  .vote {
+    width: 35px;
+    height: 35px;
+    font-weight: bold;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+  }
+  .welcom-word h1 {
+    font-size: 15px;
+  }
+  .trending-title {
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+  .trending-title .brdr-small {
+    width: 100% !important;
+  }
+  .about-content h1 {
+    font-size: 18px;
+  }
+  .about-content h5 {
+    font-size: 14px;
+  }
+  .about-content p {
+    font-size: 12px;
+    margin-bottom: 30px;
+  }
+  .image-about,
+  .image_movies,
+  .image-people,
+  .image-tv {
+    width: 60% !important;
+    margin-top: 20px;
+  }
+  .welcom-word h1 {
+    font-size: 18px !important;
+  }
 }

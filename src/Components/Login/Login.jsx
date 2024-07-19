@@ -42,9 +42,9 @@ const Login = ({ saveUserData }) => {
       let data = res.data;
       localStorage.setItem("userToken", data.token);
 
-      console.log("RESSSS", res);
-      console.log("DATAAAA", data.token);
-      console.log("RESPONSEEEEE", response);
+      // console.log("RESSSS", res);
+      // console.log("DATAAAA", data.token);
+      // console.log("RESPONSEEEEE", response);
 
       if (!response.ok) {
         let errorMsg = await response.text();

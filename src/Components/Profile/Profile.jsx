@@ -1,6 +1,7 @@
 import React from "react";
 
 const Profile = ({ userData }) => {
+  console.log(userData);
   return (
     <>
       <h1>{userData.username}</h1>

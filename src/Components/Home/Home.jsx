@@ -6,6 +6,9 @@ import Img2 from "../../images/img2.jpg";
 import Img3 from "../../images/img3.jpg";
 import Img4 from "../../images/img4.jpg";
 import Img5 from "../../images/img5.jpg";
+import Img6 from "../../images/Img6.png";
+import Img7 from "../../images/Img7.jpg";
+import Img8 from "../../images/Img8.jpg";
 import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -41,27 +44,42 @@ const Home = () => {
       img: Img5,
       name: "Kingdom of the Planet of the Apes",
     },
+    {
+      img: Img6,
+      name: "Demon Slayer: Kimetsu no Yaiba",
+    },
+    {
+      img: Img7,
+      name: "The Boys",
+    },
+    {
+      img: Img8,
+      name: "Despicable Me 4",
+    },
   ];
 
-  const handleSlide = (type) => {
-    let local;
-    if (type === "next") {
-      local = active + 1;
-      sliderContent.length - 1 < local ? setActive(0) : setActive(local);
-    }
-    if (type === "prev") {
-      local = active - 1;
-      local < 0 ? setActive(sliderContent.length - 1) : setActive(local);
+  const handleSlide = (direction) => {
+    if (direction === "next") {
+      setActive((prevActive) => (prevActive + 1) % sliderContent.length);
     }
   };
+
+  useEffect(() => {
+    const slideInterval = setInterval(() => {
+      handleSlide("next");
+    }, 2000); // Change slide every 3 seconds
+
+    return () => clearInterval(slideInterval); // Clear interval on component unmount
+  }, []);
 
   return (
     <>
       {/* ============= Start Home Welcome ============= */}
-      <div className="paretn container my-4 d-flex justify-content-between">
+      <div className="paretn my-4 d-flex justify-content-between">
         {/* left Side */}
+
         <div
-          className="rounded position-relative shadow-sm overflow-hidden bg-secondary"
+          className="d-none d-lg-block rounded position-relative shadow-sm overflow-hidden bg-secondary"
           style={{ width: "800px", height: "400px" }}
         >
           <div
@@ -70,44 +88,28 @@ const Home = () => {
           >
             {sliderContent.map((slide, i) => {
               return (
-                <img
-                  src={slide.img}
-                  key={i}
-                  alt="slideimage"
-                  className={`w-100 h-100 position-absolute ${
-                    i === active ? "clip-visible" : "clip-hidden"
-                  }`}
-                  style={{
-                    objectFit: "cover",
-                    top: "0",
-                    left: "0",
-                    transition: "1s ease-out",
-                  }}
-                />
+                <div className="image" key={i}>
+                  <img
+                    src={slide.img}
+                    alt="slideimage"
+                    className={`w-100 h-100 position-absolute ${
+                      i === active ? "" : "clip-hidden"
+                    }`}
+                    style={{
+                      objectFit: "cover",
+                      top: "0",
+                      left: "0",
+                      transition: "1s ease-out",
+                    }}
+                  />
+                </div>
               );
             })}
           </div>
-          <div>
-            <button
-              id="back"
-              className="mx-2"
-              style={{ backgroundColor: "transparent" }}
-              onClick={() => handleSlide("prev")}
-            >
-              <FontAwesomeIcon icon={faChevronLeft} size="lg" />
-            </button>
-            <button
-              id="forward"
-              className="end-0 mx-2"
-              style={{ backgroundColor: "transparent" }}
-              onClick={() => handleSlide("next")}
-            >
-              <FontAwesomeIcon icon={faChevronRight} size="lg" />
-            </button>
-          </div>
+          <div></div>
         </div>
         {/* Right Side */}
-        <div className="image" style={{ width: "400px" }}>
+        <div className="image m-auto" style={{ width: "400px" }}>
           <img src="assets/Horror.png" alt="" className="w-100" />
         </div>
       </div>
@@ -122,10 +124,10 @@ const Home = () => {
       </div>
       {/* ************ End Welcome Words ************ */}
       {/* ############ Start Main Content ############ */}
-      <div className="row py-5">
-        <div className="col-md-4 d-flex align-items-center">
+      <div className=" row py-5">
+        <div className="trending-title col-md-4 d-flex align-items-center">
           <div>
-            <div className="brdr w-25 mb-3"></div>
+            <div className="brdr brdr-small w-25 mb-3"></div>
             <h2 className="h4">
               Trending Movies <br /> To Watch Right Now
             </h2>
@@ -151,9 +153,9 @@ const Home = () => {
       {/* ************ End breaker ************ */}
       {/* =========================================================== */}
       <div className="row py-5">
-        <div className="col-md-4 d-flex align-items-center">
+        <div className="trending-title col-md-4 d-flex align-items-center">
           <div>
-            <div className="brdr w-25 mb-3"></div>
+            <div className="brdr brdr-small w-25 mb-3"></div>
             <h2 className="h4">
               Trending Tv <br /> To Watch Right Now
             </h2>
@@ -176,9 +178,9 @@ const Home = () => {
       {/* ************ End breaker ************ */}
       {/* =========================================================== */}
       <div className="row py-5">
-        <div className="col-md-4 d-flex align-items-center">
+        <div className="trending-title col-md-4 d-flex align-items-center">
           <div>
-            <div className="brdr w-25 mb-3"></div>
+            <div className="brdr brdr-small w-25 mb-3"></div>
             <h2 className="h4">
               Trending people <br /> To Watch Right Now
             </h2>

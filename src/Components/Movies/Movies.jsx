@@ -7,13 +7,13 @@ const Movies = () => {
   return (
     <>
       <div className="row">
-        <div className="image mx-auto" style={{ width: "30%" }}>
+        <div className="image_movies mx-auto" style={{ width: "30%" }}>
           <img className="w-100" src="assets/Film1.png" alt="" />
         </div>
       </div>
       <div className="row">
         {/* ************ Start Welcome Words ************ */}
-        <div className="welcom-word row mt-0 mb-5 mx-0 p-0 ">
+        <div className="welcom-word row my-5 mx-0 p-0 ">
           <div className="line col-3"></div>
           <h1
             className="col-6 d-inline-block w-50 m-0 p-0 text-center"
