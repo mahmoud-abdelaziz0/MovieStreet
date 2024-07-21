@@ -35,9 +35,18 @@ a {
   cursor: pointer;
 }
 
-.hovre:hover {
+.hovre {
+  padding: 10px 15px;
+}
+.hovre:hover,
+.hovre-mobile:hover {
   color: var(--main-color);
-  transition: 0.2s;
+  transition: 0.3s;
+  background-color: #303438;
+  border-radius: 8px;
+}
+.hovre-mobile {
+  padding: 10px 30px;
 }
 
 .loginImage {
@@ -284,4 +293,13 @@ p {
   .welcom-word h1 {
     font-size: 18px !important;
   }
+}
+
+.mobile {
+  height: 100vh;
+  background-color: var(--bg-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
